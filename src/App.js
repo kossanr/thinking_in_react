@@ -54,6 +54,7 @@ class App extends Component {
       const options = FEATURES[feature].map((item) => {
         const itemHash = slugify(JSON.stringify(item));
         return (
+          //parts
           <div key={itemHash} className="feature__item">
             <input
               type="radio"
@@ -72,11 +73,8 @@ class App extends Component {
       });
 
       return (
-        //Specs
+        //OPTIONS
         <fieldset className="feature" key={featureHash}>
-          <legend className="feature__name">
-            <h3>{feature}</h3>
-          </legend>
           {options}
         </fieldset>
       );
@@ -95,8 +93,18 @@ class App extends Component {
         <main>
           <section className="main__summary">
             <h2>Your cart</h2>
-            <MainSummary USCurrencyFormat={USCurrencyFormat} {...this.state} />
-            <MainForm features={features} />
+            <MainSummary
+              USCurrencyFormat={USCurrencyFormat}
+              total={total}
+              {...this.state}
+            />
+            <MainForm
+              features={features}
+              USCurrencyFormat={USCurrencyFormat}
+              featureHash={this.featureHash}
+              options={this.options}
+              itemHash={this.itemHash}
+            />
             <div className="summary__total">
               <div className="summary__total__label">Total</div>
               <div className="summary__total__value">

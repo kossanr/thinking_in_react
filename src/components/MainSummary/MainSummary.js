@@ -1,8 +1,8 @@
 import React from "react";
-import Total from "./components/Total/Total";
+// import Total from "../Total/Total";
 
 export default function MainSummary(props) {
-  const { USCurrencyFormat, selected } = props;
+  const { USCurrencyFormat, selected, total } = props;
 
   const summary = Object.keys(selected).map((feature, idx) => {
     const featureHash = feature + "-" + idx;
@@ -14,7 +14,7 @@ export default function MainSummary(props) {
         <div className="summary__option__value">{selectedOption.name}</div>
         <div className="summary__option__cost">
           {USCurrencyFormat.format(selectedOption.cost)}
-          <Total />
+          {/* <Total USCurrencyFormat={USCurrencyFormat} total={total} /> */}
         </div>
       </div>
     );
