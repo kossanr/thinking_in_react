@@ -1,8 +1,8 @@
 import React from "react";
 
 export default class MainForm extends React.Component {
-  //   const { features } = props;
   render() {
+    //MainForm wraps around features (Specs)
     return (
       <form className="main__form">
         <h2>Customize your laptop</h2>

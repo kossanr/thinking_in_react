@@ -1,4 +1,5 @@
 import React from "react";
+import Total from "./components/Total/Total";
 
 export default function MainSummary(props) {
   const { USCurrencyFormat, selected } = props;
@@ -13,6 +14,7 @@ export default function MainSummary(props) {
         <div className="summary__option__value">{selectedOption.name}</div>
         <div className="summary__option__cost">
           {USCurrencyFormat.format(selectedOption.cost)}
+          <Total />
         </div>
       </div>
     );

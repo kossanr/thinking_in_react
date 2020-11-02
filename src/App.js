@@ -48,6 +48,7 @@ class App extends Component {
   };
 
   render() {
+    //features is passed to MainForm
     const features = Object.keys(FEATURES).map((feature, idx) => {
       const featureHash = feature + "-" + idx;
       const options = FEATURES[feature].map((item) => {
@@ -65,11 +66,13 @@ class App extends Component {
             <label htmlFor={itemHash} className="feature__label">
               {item.name} ({USCurrencyFormat.format(item.cost)})
             </label>
+            {/* labels for Parts */}
           </div>
         );
       });
 
       return (
+        //Specs
         <fieldset className="feature" key={featureHash}>
           <legend className="feature__name">
             <h3>{feature}</h3>
