@@ -3,10 +3,6 @@ import React, { Component } from "react";
 import MainSummary from "./components/MainSummary/MainSummary";
 import MainForm from "./components/MainForm/MainForm";
 
-// Normalizes string as a slug - a string that is safe to use
-// in both URLs and html attributes
-import slugify from "slugify";
-
 import FEATURES from "./FEATURES";
 import "./App.css";
 
@@ -48,37 +44,6 @@ class App extends Component {
   };
 
   render() {
-    //features is passed to MainForm
-    const features = Object.keys(FEATURES).map((feature, idx) => {
-      const featureHash = feature + "-" + idx;
-      const options = FEATURES[feature].map((item) => {
-        const itemHash = slugify(JSON.stringify(item));
-        return (
-          //parts
-          <div key={itemHash} className="feature__item">
-            <input
-              type="radio"
-              id={itemHash}
-              className="feature__option"
-              name={slugify(feature)}
-              checked={item.name === this.state.selected[feature].name}
-              onChange={(e) => this.updateFeature(feature, item)}
-            />
-            <label htmlFor={itemHash} className="feature__label">
-              {item.name} ({USCurrencyFormat.format(item.cost)})
-            </label>
-            {/* labels for Parts */}
-          </div>
-        );
-      });
-
-      return (
-        <fieldset className="feature" key={featureHash}>
-          {options}
-        </fieldset>
-      );
-    });
-
     const total = Object.keys(this.state.selected).reduce(
       (acc, curr) => acc + this.state.selected[curr].cost,
       0
@@ -90,29 +55,19 @@ class App extends Component {
           <h1>ELF Computing | Laptops</h1>
         </header>
         <main>
+          <MainForm
+            USCurrencyFormat={USCurrencyFormat}
+            {...this.state}
+            FEATURES={FEATURES}
+            updateFeature={this.updateFeature}
+          />
           <section className="main__summary">
             <h2>Your cart</h2>
             <MainSummary
               USCurrencyFormat={USCurrencyFormat}
               total={total}
-              featureHash={this.featureHash}
-              options={this.options}
               {...this.state}
             />
-            <MainForm
-              features={features}
-              USCurrencyFormat={USCurrencyFormat}
-              featureHash={this.featureHash}
-              options={this.options}
-              itemHash={this.itemHash}
-              state={this.state}
-            />
-            <div className="summary__total">
-              <div className="summary__total__label">Total</div>
-              <div className="summary__total__value">
-                {USCurrencyFormat.format(total)}
-              </div>
-            </div>
           </section>
         </main>
       </div>
