@@ -73,7 +73,6 @@ class App extends Component {
       });
 
       return (
-        //OPTIONS
         <fieldset className="feature" key={featureHash}>
           {options}
         </fieldset>
@@ -96,6 +95,8 @@ class App extends Component {
             <MainSummary
               USCurrencyFormat={USCurrencyFormat}
               total={total}
+              featureHash={this.featureHash}
+              options={this.options}
               {...this.state}
             />
             <MainForm
@@ -104,6 +105,7 @@ class App extends Component {
               featureHash={this.featureHash}
               options={this.options}
               itemHash={this.itemHash}
+              state={this.state}
             />
             <div className="summary__total">
               <div className="summary__total__label">Total</div>

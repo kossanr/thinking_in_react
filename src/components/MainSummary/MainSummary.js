@@ -1,8 +1,9 @@
 import React from "react";
 // import Total from "../Total/Total";
+// import Option from "../Option/Option";
 
 export default function MainSummary(props) {
-  const { USCurrencyFormat, selected, total } = props;
+  const { USCurrencyFormat, selected, total, featureHash, options } = props;
 
   const summary = Object.keys(selected).map((feature, idx) => {
     const featureHash = feature + "-" + idx;
